@@ -42,7 +42,7 @@ products = {
     "TP-Link AC1750 Smart WiFi Router": {"category": 25},
     "Acer Aspire 5 Slim Laptop": {"category": 25},
     "Samsung Galaxy Tab A 8.0": {"category": 25},
-    "Python Cookbook, Third edition": {"category": 35},
+    "Python Cookbook Third edition": {"category": 35},
     "Learn Python 3 the Hard Way": {"category": 35},
     "Dell ChromeBook 11": {"category": 25},
     "Martin Smith UK-222-A Soprano Ukulele": {"category": 26},

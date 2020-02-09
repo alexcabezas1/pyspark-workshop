@@ -32,9 +32,9 @@ class ProductPrice(testdata.DictFactory):
     product_price_id = testdata.RandomInteger(100, 115)
     product_id = testdata.RandomInteger(60, 99)
     # seller_id = testdata.RandomInteger(1, 15)
-    price = testdata.RandomInteger(10, 1000)
+    price = testdata.RandomFloat(10.0, 1000.0)
 
-    start_date = testdata.RandomDateFactory(
+    register_on = testdata.RandomDateFactory(
         datetime.datetime(2018, 10, 1, 1, 1, 0, 0),
         datetime.datetime.now()
     )
@@ -117,6 +117,7 @@ def generate_product_price(generate_num):
             products_prices_map[p["product_id"]] = [pp["product_price_id"]]
 
         pp["seller_id"] = p["seller_id"]
+        pp["price"] = "{:.2f}".format(pp["price"])
         yield pp
 
 
@@ -144,39 +145,39 @@ def generate_orders(generate_num):
 
 
 def generate_order_details(generate_num):
-    for od in OrderDetails().generate(15):
+    for od in OrderDetails().generate(generate_num):
         od["order_id"] = choice(orders_map.keys())
         od["product_price_id"] = choice(products_prices_map.keys())
         yield od
 
 
 def generate_products_reviews(generate_num):
-    for pr in ProductReviews().generate(15):
+    for pr in ProductReviews().generate(generate_num):
         yield pr
 
 
 if __name__ == "__main__":
 
     # generate products
-    products_list = generate_products(15)
+    products_list = generate_products(100)
     save_csv("products.csv", products_list)
 
     # generate products_price
-    products_price_list = generate_product_price(15)
+    products_price_list = generate_product_price(100000)
     save_csv("product_prices.csv", products_price_list)
 
     # generate customers
-    customers_list = generate_customers(15)
+    customers_list = generate_customers(40)
     save_csv("customers.csv", customers_list)
 
     # genereate orders
-    orders_list = generate_orders(15)
+    orders_list = generate_orders(50000)
     save_csv("orders.csv", orders_list)
 
     # generate order details
-    order_details_list = generate_order_details(15)
+    order_details_list = generate_order_details(100000)
     save_csv("order_details.csv", order_details_list)
 
     # generate product reviews
-    product_reviews_list = generate_products_reviews(15)
+    product_reviews_list = generate_products_reviews(10000)
     save_csv("product_reviews.csv", product_reviews_list)
