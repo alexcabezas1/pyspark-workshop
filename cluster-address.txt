@@ -1,1 +1,0 @@
-ssh -i ~/pyspark-workshop.pem -ND 8157 hadoop@ec2-34-222-176-114.us-west-2.compute.amazonaws.com -v
